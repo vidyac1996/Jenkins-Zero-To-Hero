@@ -51,9 +51,18 @@ pipeline {
             GIT_USER_NAME = "vidyac1996"
         }
         steps {
+          dir("${WORKSPACE}") {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                cd $WORKSPACE  
+                echo "Current location:"
+                pwd
+                ls -la
+   
+                # 🔍 Check git repo exists
+                if [ ! -d ".git" ]; then
+                echo "ERROR: .git directory not found"
+                exit 1
+                fi 
                     git config user.email "abhishek.xyz@gmail.com"
                     git config user.name "Abhishek Veeramalla"
                     BUILD_NUMBER=${BUILD_NUMBER}
