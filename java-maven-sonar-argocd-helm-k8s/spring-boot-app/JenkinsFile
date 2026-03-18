@@ -63,6 +63,8 @@ pipeline {
                 echo "ERROR: .git directory not found"
                 exit 1
                 fi 
+                    git config --global --add safe.directory '*'
+
                     git config user.email "abhishek.xyz@gmail.com"
                     git config user.name "Abhishek Veeramalla"
                     BUILD_NUMBER=${BUILD_NUMBER}
